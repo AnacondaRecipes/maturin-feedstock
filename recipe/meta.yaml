@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<36]
+  skip: true  # [py<36 or win32 or ppc64le or s390x or aarch64]
   missing_dso_whitelist:   # [osx]
     - /usr/lib/libresolv.9.dylib  # [osx]
 
@@ -25,7 +25,7 @@ requirements:
     - rust >=1.54  # [osx]
   host:
     - pip
-    - python <3.11
+    - python
     - tomli >=1.1.0
     # Use setuptools <60 to fix ValueError: invalid pyproject.toml config: `project`
     - setuptools >=53.0.0,<60
