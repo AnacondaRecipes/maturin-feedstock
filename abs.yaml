@@ -6,3 +6,6 @@ upload_channels:
 channels:
   - services
 
+  # Conda-forge version of rust 1.60
+  - services-build-deps
+
