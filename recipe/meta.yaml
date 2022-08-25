@@ -22,6 +22,7 @@ requirements:
     - {{ compiler('c') }}              # [unix]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('rust') }}
+    - git
   host:
     - pip
     - setuptools-rust
