@@ -1,0 +1,11 @@
+aggregate_check: false
+
+upload_channels:
+  - services
+
+channels:
+  - services
+
+  # Conda-forge version of rust 1.60
+  - services-build-deps
+
