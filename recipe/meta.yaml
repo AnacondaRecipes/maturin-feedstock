@@ -47,6 +47,7 @@ outputs:
         - maturin --help
         - maturin build --help
         - pip check
+
   - name: {{ name }}-gnu               # [win]
     script: bld-win.bat                # [win]
     requirements:                      # [win]
