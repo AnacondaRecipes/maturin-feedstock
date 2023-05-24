@@ -58,7 +58,7 @@ outputs:
         - python                       # [win]
         - setuptools                   # [win]
         - setuptools-rust 1.5.2        # [win]
-        - wheels                       # [win]
+        - wheel                        # [win]
         - tomli                        # [win or py<311]
       run:                             # [win]
         - python                       # [win]
