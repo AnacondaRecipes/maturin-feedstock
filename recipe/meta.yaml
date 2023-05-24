@@ -33,10 +33,10 @@ outputs:
         - setuptools
         - setuptools-rust 1.5.2
         - wheel
-        - tomli
+        - tomli                       # [py<311]
       run:
         - python
-        - tomli >=1.1.0
+        - tomli >=1.1.0               # [py<311]
     test:
       imports:
         - maturin
@@ -48,32 +48,34 @@ outputs:
         - maturin build --help
         - pip check
 
-  - name: {{ name }}-gnu               # [win]
-    script: bld-win.bat                # [win]
-    requirements:                      # [win]
-      build:                           # [win]
-        - {{ compiler('m2w64_c') }}    # [win]
-        - rust-gnu_win-64              # [win]
-      host:                            # [win]
-        - pip                          # [win]
-        - python                       # [win]
-        - setuptools                   # [win]
-        - setuptools-rust 1.5.2        # [win]
-        - wheel                        # [win]
-        - tomli                        # [win]
-      run:                             # [win]
-        - python                       # [win]
-        - tomli >=1.1.0                # [win]
-    test:                              # [win]
-      imports:                         # [win]
-        - maturin                      # [win]
-      requires:                        # [win]
-        - pip                          # [win]
-      commands:                        # [win]
-        - maturin -V                   # [win]
-        - maturin --help               # [win]
-        - maturin build --help         # [win]
-        - pip check                    # [win]
+  - name: {{ name }}-gnu
+    script: bld-win.bat
+    build:
+      skip: true  # [not win]
+    requirements:
+      build:
+        - {{ compiler('m2w64_c') }}
+        - rust-gnu_win-64
+      host:
+        - pip
+        - python
+        - setuptools
+        - setuptools-rust 1.5.2
+        - wheel
+        - tomli                        # [py<311]
+      run:
+        - python
+        - tomli >=1.1.0                # [py<311]
+    test:
+      imports:
+        - maturin
+      requires:
+        - pip
+      commands:
+        - maturin -V
+        - maturin --help
+        - maturin build --help
+        - pip check
 
 about:
   home: https://www.maturin.rs/
