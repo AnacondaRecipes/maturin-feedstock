@@ -25,8 +25,9 @@ outputs:
   - name: {{ name }}
     script: bld-win.bat                  # [win]
     script: build-unix.sh                # [not win]
-    missing_dso_whitelist:   # [osx]
+    missing_dso_whitelist:   # [osx or s390x]
       - /usr/lib/libresolv.9.dylib  # [osx]
+    - '$RPATH/ld64.so.1'  # [s390x]
     requirements:
       build:
         - {{ compiler('c') }}
