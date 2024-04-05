@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: efa194e99ae5fff185263d8244acacb12ae256ea73aba62c9446f6075ffc7ac1
+  sha256: 3dd834ece80edb866af18cbd4635e0ecac40139c726428d5f1849ae154b26dca
   patches:  # [s390x]
     # ring adds big endian support from 0.17 only
     - patches/0001-ring-0.17.3-for-s390x.patch # [s390x]
