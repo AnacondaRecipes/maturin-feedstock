@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "1.5.1" %}
+{% set version = "1.7.8" %}
 
 package:
   name: {{ name }}-suite
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3dd834ece80edb866af18cbd4635e0ecac40139c726428d5f1849ae154b26dca
+  sha256: 649c6ef3f0fa4c5f596140d761dc5a4d577c485cc32fb5b9b344a8280352880d
 
 build:
-  number: 1
+  number: 0
   skip: True  # [py<37]
 
 outputs:
@@ -83,8 +83,8 @@ about:
   summary: >-
     Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
   description: |
-    This project is meant as a zero configuration replacement for setuptools-rust and milksnake.
-    It supports building wheels for python 3.5+ on windows, linux, mac and freebsd, can upload them to pypi and has basic pypy support.
+    Build and publish crates with pyo3, cffi and uniffi bindings as well as rust binaries as python packages with minimal configuration. 
+    It supports building wheels for python 3.8+ on Windows, Linux, macOS and FreeBSD, can upload them to pypi and has basic PyPy and GraalPy support.
   dev_url: https://github.com/PyO3/maturin
   doc_url: https://www.maturin.rs/
 
