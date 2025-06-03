@@ -29,7 +29,7 @@ outputs:
         - pip
         - python
         - setuptools
-        - setuptools-rust >=1.4.0
+        - setuptools-rust >=1.11.0
         - wheel
         - tomli >=1.1.0               # [py<311]
       run:
