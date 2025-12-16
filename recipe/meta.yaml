@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "1.9.4" %}
+{% set version = "1.10.2" %}
 
 package:
   name: {{ name }}-suite
@@ -7,31 +7,31 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 235163a0c99bc6f380fb8786c04fd14dcf6cd622ff295ea3de525015e6ac40cf
+  sha256: 259292563da89850bf8f7d37aa4ddba22905214c1e180b1c8f55505dfd8c0e81
 
 build:
   number: 0
-  skip: True  # [py<37]
+  skip: true  # [py<37]
 
 outputs:
   - name: {{ name }}
-    script: bld-win.bat                  # [win]
-    script: build-unix.sh                # [not win]
+    script: bld-win.bat  # [win]
+    script: build-unix.sh  # [not win]
     requirements:
       build:
         - {{ stdlib('c') }}
         - {{ compiler('c') }}
-        - {{ compiler('rust') }}     # [not win]
-        - rust_win-64                # [win]
+        - {{ compiler('rust') }}  # [not win]
+        - rust_win-64  # [win]
       host:
         - pip
         - python
         - setuptools >=77.0.0
         - setuptools-rust >=1.11.0
-        - tomli >=1.1.0               # [py<311]
+        - tomli >=1.1.0  # [py<311]
       run:
         - python
-        - tomli >=1.1.0               # [py<311]
+        - tomli >=1.1.0  # [py<311]
       run_constrained:
         - ziglang >=0.10.0,<0.13.0
     test:
@@ -44,7 +44,6 @@ outputs:
         - maturin --help
         - maturin build --help
         - pip check
-
   - name: {{ name }}-gnu
     script: bld-win.bat
     build:
@@ -58,10 +57,10 @@ outputs:
         - python
         - setuptools >=77.0.0
         - setuptools-rust >=1.4.0
-        - tomli >=1.1.0                # [py<311]
+        - tomli >=1.1.0  # [py<311]
       run:
         - python
-        - tomli >=1.1.0                # [py<311]
+        - tomli >=1.1.0  # [py<311]
       run_constrained:
         - ziglang >=0.10.0,<0.13.0
     test:
@@ -83,7 +82,7 @@ about:
   summary: >-
     Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages
   description: |
-    Build and publish crates with pyo3, cffi and uniffi bindings as well as rust binaries as python packages with minimal configuration. 
+    Build and publish crates with pyo3, cffi and uniffi bindings as well as rust binaries as python packages with minimal configuration.
     It supports building wheels for python 3.8+ on Windows, Linux, macOS and FreeBSD, can upload them to pypi and has basic PyPy and GraalPy support.
   dev_url: https://github.com/PyO3/maturin
   doc_url: https://www.maturin.rs
