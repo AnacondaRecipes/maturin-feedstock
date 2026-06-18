@@ -49,7 +49,6 @@ outputs:
       skip: true  # [not win64]
     requirements:
       build:
-        - {{ stdlib('c') }}
         - {{ compiler('m2w64_c') }}
         - rust-gnu_win-64
       host:
