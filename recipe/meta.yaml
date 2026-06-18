@@ -21,8 +21,7 @@ outputs:
       build:
         - {{ stdlib('c') }}
         - {{ compiler('c') }}
-        - {{ compiler('rust') }}  # [not win]
-        - rust_win-64  # [win]
+        - {{ compiler('rust') }}
       host:
         - pip
         - python
@@ -52,7 +51,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('m2w64_c') }}
-        - rust-gnu_win-64
+        - {{ compiler('rust-gnu') }}
       host:
         - pip
         - python
