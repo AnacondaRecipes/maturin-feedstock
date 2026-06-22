@@ -49,7 +49,7 @@ outputs:
   - name: {{ name }}-gnu
     script: bld-win.bat
     build:
-      skip: true  # [not win]
+      skip: true  # [not win64]
     requirements:
       build:
         - {{ compiler('m2w64_c') }}
