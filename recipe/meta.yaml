@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "1.11.5" %}
+{% set version = "1.14.0" %}
 
 package:
   name: {{ name }}-suite
@@ -7,10 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7579cf47640fb9595a19fe83a742cbf63203f0343055c349c1cab39045a30c29
+  sha256: f7f82a6aca4a6c402bf00b99200be199d4874d04b9b9e74e825726a3478bba7f
 
 build:
   number: 1
+  missing_dso_whitelist:
+    - $RPATH/api-ms-win-core-winrt-error-l1-1-0.dll  # [win]
   skip: true  # [py<37]
 
 outputs:
@@ -26,23 +28,24 @@ outputs:
         - pip
         - python
         - setuptools >=77.0.0
-        - setuptools-rust >=1.11.0
         - tomli >=1.1.0  # [py<311]
+        - setuptools-rust >=1.11.0
       run:
         - python
         - tomli >=1.1.0  # [py<311]
       run_constrained:
-        - ziglang >=0.10.0,<0.13.0
+        - ziglang >=0.10.0
     test:
       imports:
         - maturin
       requires:
         - pip
       commands:
+        - pip check
         - maturin -V
         - maturin --help
         - maturin build --help
-        - pip check
+
   - name: {{ name }}-gnu
     script: bld-win.bat
     build:
@@ -50,28 +53,28 @@ outputs:
     requirements:
       build:
         - {{ compiler('m2w64_c') }}
-        - rust-gnu_win-64
+        - {{ compiler('rust-gnu') }}
       host:
         - pip
         - python
         - setuptools >=77.0.0
-        - setuptools-rust >=1.4.0
         - tomli >=1.1.0  # [py<311]
+        - setuptools-rust >=1.11.0
       run:
         - python
         - tomli >=1.1.0  # [py<311]
       run_constrained:
-        - ziglang >=0.10.0,<0.13.0
+        - ziglang >=0.10.0
     test:
       imports:
         - maturin
       requires:
         - pip
       commands:
+        - pip check
         - maturin -V
         - maturin --help
         - maturin build --help
-        - pip check
 
 about:
   home: https://www.maturin.rs
