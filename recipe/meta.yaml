@@ -1,5 +1,5 @@
 {% set name = "maturin" %}
-{% set version = "1.14.0" %}
+{% set version = "1.14.1" %}
 
 package:
   name: {{ name }}-suite
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f7f82a6aca4a6c402bf00b99200be199d4874d04b9b9e74e825726a3478bba7f
+  sha256: 9d6577a62cd08e0ceba7a0db06fb098e0c9b1b3429bad747a4f3a18215a1b3df
 
 build:
   number: 0
@@ -34,6 +34,7 @@ outputs:
         - python
         - tomli >=1.1.0  # [py<311]
       run_constrained:
+        # zig
         - ziglang >=0.10.0
     test:
       imports:
@@ -53,6 +54,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('m2w64_c') }}
+        # rust-gnu is not supported ucrt64_c compiler
         - {{ compiler('rust-gnu') }}
       host:
         - pip
@@ -94,3 +96,4 @@ extra:
     - apcamargo
   skip-lints:
     - host_section_needs_exact_pinnings
+    - should_use_stdlib
