@@ -53,7 +53,8 @@ outputs:
       skip: true  # [not win64]
     requirements:
       build:
-        - {{ compiler('ucrt64_c') }}
+        - {{ compiler('m2w64_c') }}
+        # rust-gnu is not supported ucrt64_c compiler
         - {{ compiler('rust-gnu') }}
       host:
         - pip
