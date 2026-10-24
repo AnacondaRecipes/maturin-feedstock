@@ -10,7 +10,7 @@ source:
   sha256: 94b26cc8e8aba61a5f2099715fe640e18c5f678e9a500408b38761263954228a
 
 build:
-  number: 0
+  number: 1
   missing_dso_whitelist:
     - $RPATH/api-ms-win-core-winrt-error-l1-1-0.dll  # [win]
   skip: true  # [py<37]
@@ -35,37 +35,6 @@ outputs:
         - tomli >=1.1.0  # [py<311]
       run_constrained:
         # zig
-        - ziglang >=0.10.0
-    test:
-      imports:
-        - maturin
-      requires:
-        - pip
-      commands:
-        - pip check
-        - maturin -V
-        - maturin --help
-        - maturin build --help
-
-  - name: {{ name }}-gnu
-    script: bld-win.bat
-    build:
-      skip: true  # [not win64]
-    requirements:
-      build:
-        - {{ compiler('m2w64_c') }}
-        # rust-gnu is not supported ucrt64_c compiler
-        - {{ compiler('rust-gnu') }}
-      host:
-        - pip
-        - python
-        - setuptools >=77.0.0
-        - tomli >=1.1.0  # [py<311]
-        - setuptools-rust >=1.11.0
-      run:
-        - python
-        - tomli >=1.1.0  # [py<311]
-      run_constrained:
         - ziglang >=0.10.0
     test:
       imports:

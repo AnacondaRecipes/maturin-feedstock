@@ -4,4 +4,3 @@ upstream_sources:
       identifier: maturin
     packages:
       - maturin
-      - maturin-gnu
