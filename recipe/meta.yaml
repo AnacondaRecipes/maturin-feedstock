@@ -2,7 +2,7 @@
 {% set version = "1.14.1" %}
 
 package:
-  name: {{ name }}-suite
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -15,37 +15,34 @@ build:
     - $RPATH/api-ms-win-core-winrt-error-l1-1-0.dll  # [win]
   skip: true  # [py<37]
 
-outputs:
-  - name: {{ name }}
-    script: bld-win.bat  # [win]
-    script: build-unix.sh  # [not win]
-    requirements:
-      build:
-        - {{ stdlib('c') }}
-        - {{ compiler('c') }}
-        - {{ compiler('rust') }}
-      host:
-        - pip
-        - python
-        - setuptools >=77.0.0
-        - tomli >=1.1.0  # [py<311]
-        - setuptools-rust >=1.11.0
-      run:
-        - python
-        - tomli >=1.1.0  # [py<311]
-      run_constrained:
-        # zig
-        - ziglang >=0.10.0
-    test:
-      imports:
-        - maturin
-      requires:
-        - pip
-      commands:
-        - pip check
-        - maturin -V
-        - maturin --help
-        - maturin build --help
+requirements:
+  build:
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
+    - {{ compiler('rust') }}
+  host:
+    - pip
+    - python
+    - setuptools >=77.0.0
+    - tomli >=1.1.0  # [py<311]
+    - setuptools-rust >=1.11.0
+  run:
+    - python
+    - tomli >=1.1.0  # [py<311]
+  run_constrained:
+    # zig
+    - ziglang >=0.10.0
+
+test:
+  imports:
+    - maturin
+  requires:
+    - pip
+  commands:
+    - pip check
+    - maturin -V
+    - maturin --help
+    - maturin build --help
 
 about:
   home: https://www.maturin.rs
